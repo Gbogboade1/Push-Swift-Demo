@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45342C19F00B0049FF1F /* Accounts.swift */; };
+		0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45352C19F00B0049FF1F /* Signer.swift */; };
+		0DAB453B2C19F0D40049FF1F /* web3swift in Frameworks */ = {isa = PBXBuildFile; productRef = 0DAB453A2C19F0D40049FF1F /* web3swift */; };
 		0DEC9E642C189426004B5304 /* Push_Swift_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */; };
 		0DEC9E662C189426004B5304 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC9E652C189426004B5304 /* ContentView.swift */; };
 		0DEC9E682C189428004B5304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DEC9E672C189428004B5304 /* Assets.xcassets */; };
 		0DEC9E6B2C189428004B5304 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DEC9E6A2C189428004B5304 /* Preview Assets.xcassets */; };
+		0DEC9E732C1897A2004B5304 /* Push in Frameworks */ = {isa = PBXBuildFile; productRef = 0DEC9E722C1897A2004B5304 /* Push */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DAB45342C19F00B0049FF1F /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
+		0DAB45352C19F00B0049FF1F /* Signer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		0DEC9E602C189426004B5304 /* Push Swift Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push Swift Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_Swift_DemoApp.swift; sourceTree = "<group>"; };
 		0DEC9E652C189426004B5304 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,12 +32,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DEC9E732C1897A2004B5304 /* Push in Frameworks */,
+				0DAB453B2C19F0D40049FF1F /* web3swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DAB45362C19F00B0049FF1F /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAB45342C19F00B0049FF1F /* Accounts.swift */,
+				0DAB45352C19F00B0049FF1F /* Signer.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
 		0DEC9E572C189426004B5304 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +68,7 @@
 		0DEC9E622C189426004B5304 /* Push Swift Demo */ = {
 			isa = PBXGroup;
 			children = (
+				0DAB45362C19F00B0049FF1F /* helpers */,
 				0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */,
 				0DEC9E652C189426004B5304 /* ContentView.swift */,
 				0DEC9E672C189428004B5304 /* Assets.xcassets */,
@@ -83,6 +101,10 @@
 			dependencies = (
 			);
 			name = "Push Swift Demo";
+			packageProductDependencies = (
+				0DEC9E722C1897A2004B5304 /* Push */,
+				0DAB453A2C19F0D40049FF1F /* web3swift */,
+			);
 			productName = "Push Swift Demo";
 			productReference = 0DEC9E602C189426004B5304 /* Push Swift Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +133,10 @@
 				Base,
 			);
 			mainGroup = 0DEC9E572C189426004B5304;
+			packageReferences = (
+				0DEC9E712C1897A2004B5304 /* XCRemoteSwiftPackageReference "push-swift-sdk" */,
+				0DAB45392C19F0D40049FF1F /* XCRemoteSwiftPackageReference "web3swift" */,
+			);
 			productRefGroup = 0DEC9E612C189426004B5304 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +165,8 @@
 			files = (
 				0DEC9E662C189426004B5304 /* ContentView.swift in Sources */,
 				0DEC9E642C189426004B5304 /* Push_Swift_DemoApp.swift in Sources */,
+				0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */,
+				0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +372,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DAB45392C19F0D40049FF1F /* XCRemoteSwiftPackageReference "web3swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/web3swift-team/web3swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
+		0DEC9E712C1897A2004B5304 /* XCRemoteSwiftPackageReference "push-swift-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/push-protocol/push-swift-sdk";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DAB453A2C19F0D40049FF1F /* web3swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DAB45392C19F0D40049FF1F /* XCRemoteSwiftPackageReference "web3swift" */;
+			productName = web3swift;
+		};
+		0DEC9E722C1897A2004B5304 /* Push */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DEC9E712C1897A2004B5304 /* XCRemoteSwiftPackageReference "push-swift-sdk" */;
+			productName = Push;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DEC9E582C189426004B5304 /* Project object */;
 }
