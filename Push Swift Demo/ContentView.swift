@@ -103,8 +103,12 @@ struct ContentView: View {
                         Text("Loading").padding()
                     }
                 }
-                List(chats, id: \.chatId) {
-                    chat in ChatTile(chat: chat)
+                List(chats, id: \.chatId) { chat in
+                    NavigationLink {
+                      ChatView(feed: chat, pushUser: pushUser!)
+                    } label: {
+                        ChatTile(chat: chat)
+                    }
                 }
             }
         }
@@ -157,7 +161,7 @@ struct ChatTile: View {
     var body: some View {
         HStack {
             if chat.profilePicture != nil {
-                Base64ImageView(base64String: (chat.groupInformation != nil) ?  chat.groupInformation!.groupImage!.replacingOccurrences(of: "data:image/png;base64,", with: "") : chat.profilePicture!.replacingOccurrences(of: "data:image/png;base64,", with: "")
+                Base64ImageView(base64String: (chat.groupInformation != nil) ? chat.groupInformation!.groupImage!.replacingOccurrences(of: "data:image/png;base64,", with: "") : chat.profilePicture!.replacingOccurrences(of: "data:image/png;base64,", with: "")
                 )
                 .frame(width: 40, height: 40)
             } else {
@@ -180,7 +184,7 @@ struct RequestTile: View {
     var body: some View {
         HStack {
             if chat.profilePicture != nil {
-                Base64ImageView(base64String: (chat.groupInformation != nil) ?  chat.groupInformation!.groupImage!.replacingOccurrences(of: "data:image/png;base64,", with: "") : chat.profilePicture!.replacingOccurrences(of: "data:image/png;base64,", with: "")
+                Base64ImageView(base64String: (chat.groupInformation != nil) ? chat.groupInformation!.groupImage!.replacingOccurrences(of: "data:image/png;base64,", with: "") : chat.profilePicture!.replacingOccurrences(of: "data:image/png;base64,", with: "")
                 )
                 .frame(width: 40, height: 40)
             } else {
