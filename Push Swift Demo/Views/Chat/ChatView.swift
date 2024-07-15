@@ -9,8 +9,8 @@ struct ChatView: View {
     init(feed: Push.PushChat.Feeds, pushUser: PushAPI) {
         self.feed = feed
         self.pushUser = pushUser
-        
-        print("pushUser account: \(pushUser.account)")
+
+//        print("pushUser account: \(pushUser.account)")
 
         if feed.msg != nil {
             messages = [feed.msg!]
@@ -43,7 +43,6 @@ struct ChatView: View {
                             message: message.messageObj?.content ?? "",
                             direction: walletToPCAIP10(account: pushUser.account) == message.fromCAIP10 ? .right : .left
                         )
-
                     }
                 }.listStyle(.plain).listRowSeparator(.hidden).padding(8)
             }
@@ -89,13 +88,35 @@ struct ChatView: View {
 
     func _init() async {
         await loadMessages()
+
+        let pushStream = pushUser.stream
+
+        pushStream?.on(STREAM.CHAT.rawValue, listener: { it in
+            print("Scocket CHAT: in chat \((it as! [String: Any])["chatId"] as! String)")
+            if ((it as! [String: Any])["chatId"] as! String) == feed.chatId {
+                Task {
+                    await loadMessages()
+                }
+            }
+
+        })
+
+        pushStream?.on(STREAM.CHAT_OPS.rawValue, listener: { it in
+            print("Scocket CHAT: in chat \((it as! [String: Any])["chatId"] as! String)")
+            if ((it as! [String: Any])["chatId"] as! String) == feed.chatId {
+                Task {
+                    await loadMessages()
+                }
+            }
+
+        })
     }
 
     func loadMessages() async {
         do {
             isLoading = true
             let chats = try await pushUser.chat.history(target: feed.chatId!)
-            
+
             messages = chats.reversed()
             isLoading = false
         } catch {
@@ -115,10 +136,10 @@ struct ChatMessageView: View {
     let direction: ChatMessageDirection
 
     var body: some View {
-       HStack {
-           if(direction == .right){
-               Spacer()
-           }
+        HStack {
+            if direction == .right {
+                Spacer()
+            }
             VStack(alignment: direction == .left ? .leading : .trailing) {
                 Text(sender).font(.system(size: 8))
                 Text(message)

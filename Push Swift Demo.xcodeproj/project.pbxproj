@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D6672D72C22D92E005CE8F1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6672D62C22D92E005CE8F1 /* ChatView.swift */; };
+		0D6DDBEA2C3EE0D400A1E34B /* DashBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */; };
+		0D6DDBED2C3EE8A300A1E34B /* ChatTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */; };
 		0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45342C19F00B0049FF1F /* Accounts.swift */; };
 		0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45352C19F00B0049FF1F /* Signer.swift */; };
 		0DAB453B2C19F0D40049FF1F /* web3swift in Frameworks */ = {isa = PBXBuildFile; productRef = 0DAB453A2C19F0D40049FF1F /* web3swift */; };
@@ -19,7 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D5D3E642C34455800704AD1 /* Push-Swift-Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Push-Swift-Demo-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0D6672D62C22D92E005CE8F1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoard.swift; sourceTree = "<group>"; };
+		0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTile.swift; sourceTree = "<group>"; };
 		0DAB45342C19F00B0049FF1F /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		0DAB45352C19F00B0049FF1F /* Signer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		0DEC9E602C189426004B5304 /* Push Swift Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push Swift Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,13 +55,23 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		0DAB45362C19F00B0049FF1F /* helpers */ = {
+		0D6DDBEB2C3EE5F100A1E34B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0D6672D52C22D7E1005CE8F1 /* Chat */,
+				0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */,
+				0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAB45362C19F00B0049FF1F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				0DAB45342C19F00B0049FF1F /* Accounts.swift */,
 				0DAB45352C19F00B0049FF1F /* Signer.swift */,
 			);
-			path = helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0DEC9E572C189426004B5304 = {
@@ -78,10 +93,11 @@
 		0DEC9E622C189426004B5304 /* Push Swift Demo */ = {
 			isa = PBXGroup;
 			children = (
-				0DAB45362C19F00B0049FF1F /* helpers */,
+				0D5D3E642C34455800704AD1 /* Push-Swift-Demo-Info.plist */,
+				0D6DDBEB2C3EE5F100A1E34B /* Views */,
+				0DAB45362C19F00B0049FF1F /* Helpers */,
 				0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */,
 				0DEC9E652C189426004B5304 /* ContentView.swift */,
-				0D6672D52C22D7E1005CE8F1 /* Chat */,
 				0DEC9E672C189428004B5304 /* Assets.xcassets */,
 				0DEC9E692C189428004B5304 /* Preview Content */,
 			);
@@ -174,11 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D6DDBEA2C3EE0D400A1E34B /* DashBoard.swift in Sources */,
 				0DEC9E662C189426004B5304 /* ContentView.swift in Sources */,
 				0DEC9E642C189426004B5304 /* Push_Swift_DemoApp.swift in Sources */,
 				0D6672D72C22D92E005CE8F1 /* ChatView.swift in Sources */,
 				0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */,
 				0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */,
+				0D6DDBED2C3EE8A300A1E34B /* ChatTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +333,7 @@
 				DEVELOPMENT_TEAM = 3GCXMST35Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Push-Swift-Demo-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +363,7 @@
 				DEVELOPMENT_TEAM = 3GCXMST35Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Push-Swift-Demo-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -398,7 +418,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/push-protocol/push-swift-sdk";
 			requirement = {
-				branch = main;
+				branch = "push-stream";
 				kind = branch;
 			};
 		};
