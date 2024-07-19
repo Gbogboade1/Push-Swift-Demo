@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0900CB2C45547C003507FC /* CreateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0900CA2C45547C003507FC /* CreateGroup.swift */; };
+		0D0900CD2C457D61003507FC /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0900CC2C457D61003507FC /* Toast.swift */; };
 		0D6672D72C22D92E005CE8F1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6672D62C22D92E005CE8F1 /* ChatView.swift */; };
 		0D6DDBEA2C3EE0D400A1E34B /* DashBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */; };
 		0D6DDBED2C3EE8A300A1E34B /* ChatTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D0900CA2C45547C003507FC /* CreateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroup.swift; sourceTree = "<group>"; };
+		0D0900CC2C457D61003507FC /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		0D5D3E642C34455800704AD1 /* Push-Swift-Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Push-Swift-Demo-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0D6672D62C22D92E005CE8F1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoard.swift; sourceTree = "<group>"; };
@@ -47,20 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D6672D52C22D7E1005CE8F1 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				0D6672D62C22D92E005CE8F1 /* ChatView.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
 		0D6DDBEB2C3EE5F100A1E34B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0D6672D52C22D7E1005CE8F1 /* Chat */,
 				0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */,
+				0D6672D62C22D92E005CE8F1 /* ChatView.swift */,
 				0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */,
+				0D0900CA2C45547C003507FC /* CreateGroup.swift */,
+				0D0900CC2C457D61003507FC /* Toast.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,7 +193,9 @@
 				0DEC9E642C189426004B5304 /* Push_Swift_DemoApp.swift in Sources */,
 				0D6672D72C22D92E005CE8F1 /* ChatView.swift in Sources */,
 				0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */,
+				0D0900CB2C45547C003507FC /* CreateGroup.swift in Sources */,
 				0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */,
+				0D0900CD2C457D61003507FC /* Toast.swift in Sources */,
 				0D6DDBED2C3EE8A300A1E34B /* ChatTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

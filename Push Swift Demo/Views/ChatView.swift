@@ -10,8 +10,6 @@ struct ChatView: View {
         self.feed = feed
         self.pushUser = pushUser
 
-//        print("pushUser account: \(pushUser.account)")
-
         if feed.msg != nil {
             messages = [feed.msg!]
         }

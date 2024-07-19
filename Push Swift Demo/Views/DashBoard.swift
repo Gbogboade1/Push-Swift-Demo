@@ -1,12 +1,19 @@
 import Push
 import SwiftUI
 
+// #Preview {
+//    DashBoard()
+// }
+
 struct DashBoard: View {
     @State private var address = ""
     @State private var pushUser: PushAPI? = nil
     @State private var pushStream: PushStream? = nil
     @State private var isLoading = false
     @FocusState private var isAmountFocused: Bool
+    @State private var path = NavigationPath()
+
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
 
     func initPush() async throws {
         isLoading = true
@@ -29,7 +36,7 @@ struct DashBoard: View {
             Task {
                 try await loadChats()
             }
-    
+
         })
 
         pushStream?.on(STREAM.CHAT_OPS.rawValue, listener: { it in
@@ -37,7 +44,7 @@ struct DashBoard: View {
             Task {
                 try await loadChats()
             }
-   
+
         })
 
         try await loadChats()
@@ -63,9 +70,11 @@ struct DashBoard: View {
         isLoading = false
     }
 
+    @State private var isShowingCreateGroup = false
+
     var body: some View {
-        NavigationStack {
-            if address.isEmpty {
+        if address.isEmpty {
+            NavigationStack {
                 Form {
                     Text("No Wallet connected")
                 }
@@ -85,14 +94,23 @@ struct DashBoard: View {
                         }
                     }
                 }
+            }
 
-            } else {
-                Text(address).font(.system(size: 12)).lineLimit(2).padding()
-                TabView(selection: $selection) {
-                    chatList
-                        .tabItem { Text("CHAT").font(.caption) }.tag(0)
-                    requestsList
-                        .tabItem { Text("REQUESTS").font(.caption) }.tag(1)
+        } else {
+            NavigationView {
+                VStack {
+                    Text(address).font(.system(size: 12)).lineLimit(2).padding()
+                    TabView(selection: $selection) {
+                        chatList
+                            .tabItem {
+                                Text("CHAT").font(.title)
+                            }.tag(0)
+                        requestsList
+                            .tabItem {
+                                Text("REQUESTS")
+                                    .font(.title)
+                            }.tag(1)
+                    }
                 }
                 .navigationTitle("Push Swift")
                 .toolbar {
@@ -117,7 +135,25 @@ struct DashBoard: View {
 
     var chatList: some View {
         return Form {
-            Section(header: Text("Chats")) {
+            Section(header: HStack {
+                Text("Chats")
+                Spacer()
+                if pushUser != nil {
+                    NavigationLink(
+                        destination: CreateGroup(
+                            pushUser: pushUser!,
+                            onClose: {
+                                self.isShowingCreateGroup = false
+                            }
+                        ),
+
+                        isActive: $isShowingCreateGroup
+
+                    ) {
+                        Text("Create Group")
+                    }
+                }
+            }) {
                 if isLoading && chats.isEmpty {
                     HStack {
                         ProgressView()
@@ -159,8 +195,4 @@ struct DashBoard: View {
             }
         }
     }
-}
-
-#Preview {
-    DashBoard()
 }
