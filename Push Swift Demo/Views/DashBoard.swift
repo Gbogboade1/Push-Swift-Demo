@@ -1,59 +1,76 @@
 import Push
 import SwiftUI
 
-// #Preview {
-//    DashBoard()
-// }
+#Preview {
+    DashBoard()
+}
 
 struct DashBoard: View {
+    @State private var privateKey = ""
+
     @State private var address = ""
     @State private var pushUser: PushAPI? = nil
     @State private var pushStream: PushStream? = nil
     @State private var isLoading = false
-    @FocusState private var isAmountFocused: Bool
-    @State private var path = NavigationPath()
+
+    @State private var errorTitle: String = ""
+    @State private var errorMessage: String = ""
+    @State private var showingError: Bool = false
 
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
 
-    func initPush() async throws {
-        isLoading = true
-        let privateKey = "a59c37c9b61b73f824972b901e0b4ae914750fd8de94c5dfebc4934ff1d12d3c" // getRandomAccount()
-        let signer = try SignerPrivateKey(privateKey: privateKey)
-        address = try await signer.getAddress()
-        pushUser = try await Push.PushAPI.initializePush(signer: signer, options: Push.PushAPI.PushAPIInitializeOptions(env: .STAGING))
-        pushStream = try await pushUser!.initStream(
-            listen: [.CHAT, .CHAT_OPS, .CONNECT, .DISCONNECT],
-            options: PushStreamInitializeOptions(
-                filter: PushStreamFilter(
-                    channels: ["*"],
-                    chats: ["*"],
-                    space: ["*"]
-                )
-            ))
+    func initPushWithRandomAccount() async throws {
+        let privateKey = getRandomAccount()
+        try await initPush(privateKey)
+    }
 
-        pushStream?.on(STREAM.CHAT.rawValue, listener: { it in
-            print("Scocket CHAT: \(it)")
-            Task {
-                try await loadChats()
-            }
+    func initPush(_ privateKey: String) async throws {
+        do {
+            isLoading = true
 
-        })
+            let signer = try SignerPrivateKey(privateKey: privateKey)
+            address = try await signer.getAddress()
+            pushUser = try await Push.PushAPI.initializePush(signer: signer, options: Push.PushAPI.PushAPIInitializeOptions(env: .STAGING))
+            pushStream = try await pushUser!.initStream(
+                listen: [.CHAT, .CHAT_OPS, .CONNECT, .DISCONNECT],
+                options: PushStreamInitializeOptions(
+                    filter: PushStreamFilter(
+                        channels: ["*"],
+                        chats: ["*"],
+                        space: ["*"]
+                    )
+                ))
 
-        pushStream?.on(STREAM.CHAT_OPS.rawValue, listener: { it in
-            print("Scocket CHAT_OPS: \(it)")
-            Task {
-                try await loadChats()
-            }
+            pushStream?.on(STREAM.CHAT.rawValue, listener: { it in
+                print("Scocket CHAT: \(it)")
+                Task {
+                    try await loadChats()
+                }
 
-        })
+            })
 
-        try await loadChats()
+            pushStream?.on(STREAM.CHAT_OPS.rawValue, listener: { it in
+                print("Scocket CHAT_OPS: \(it)")
+                Task {
+                    try await loadChats()
+                }
 
-        try await pushStream?.connect()
+            })
+
+            try await loadChats()
+
+            try await pushStream?.connect()
+        } catch {
+            errorTitle = "Connection failed"
+            errorMessage = "Error occured\n \(error)"
+            showingError = true
+        }
     }
 
     func disconnectWallet() async throws {
         pushUser = nil
+        address = ""
+        privateKey = ""
         chats.removeAll()
         requests.removeAll()
     }
@@ -76,7 +93,17 @@ struct DashBoard: View {
         if address.isEmpty {
             NavigationStack {
                 Form {
-                    Text("No Wallet connected")
+                    HStack {
+                        TextField("Enter private key for test wallet", text: $privateKey).textFieldStyle(.roundedBorder)
+
+                        Button("Add", action: {
+                            Task {
+                                if privateKey.count < 16 {
+                                    try await initPush(privateKey)
+                                }
+                            }
+                        })
+                    }
                 }
                 .navigationTitle("Push Swift")
                 .toolbar {
@@ -86,13 +113,15 @@ struct DashBoard: View {
                     } else {
                         Button(action: {
                             Task {
-                                try await initPush()
+                                try await initPushWithRandomAccount()
                             }
 
                         }) {
-                            Text("Connect wallet")
+                            Text("Connect Random wallet")
                         }
                     }
+                }.alert(errorTitle, isPresented: $showingError) { } message: {
+                    Text(errorMessage)
                 }
             }
 
@@ -129,6 +158,9 @@ struct DashBoard: View {
                         }
                     }
                 }
+                .alert(errorTitle, isPresented: $showingError) { } message: {
+                    Text(errorMessage)
+                }
             }
         }
     }
@@ -146,9 +178,7 @@ struct DashBoard: View {
                                 self.isShowingCreateGroup = false
                             }
                         ),
-
                         isActive: $isShowingCreateGroup
-
                     ) {
                         Text("Create Group")
                     }
@@ -158,6 +188,23 @@ struct DashBoard: View {
                     HStack {
                         ProgressView()
                         Text("Loading").padding()
+                    }
+                }
+
+                if chats.isEmpty && !isLoading {
+                    Text("Create a group to get started")
+                    if pushUser != nil {
+                        NavigationLink(
+                            destination: CreateGroup(
+                                pushUser: pushUser!,
+                                onClose: {
+                                    self.isShowingCreateGroup = false
+                                }
+                            ),
+                            isActive: $isShowingCreateGroup
+                        ) {
+                            Text("Create Group")
+                        }
                     }
                 }
                 List(chats, id: \.chatId) { chat in
@@ -194,5 +241,15 @@ struct DashBoard: View {
                 }
             }
         }
+    }
+}
+
+extension DashBoard {
+    public func getRandomAccount() -> String {
+        let length = 64
+        let letters = "abcdef0123456789"
+        let privateKey = String((0 ..< length).map { _ in letters.randomElement()! })
+
+        return privateKey
     }
 }

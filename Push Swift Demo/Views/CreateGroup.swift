@@ -197,7 +197,6 @@ struct CreateGroup: View {
 
                 Button(action: {
                     Task {
-                        print("Create group")
                         try await onCreateGroup()
                     }
 

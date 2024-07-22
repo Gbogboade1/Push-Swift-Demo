@@ -30,7 +30,11 @@ struct ChatView: View {
             } else if messages.isEmpty && !isLoading {
                 VStack(alignment: .center) {
                     Spacer()
-                    Text("No messages found")
+                    HStack {
+                        Spacer()
+                        Text("No messages found")
+                        Spacer()
+                    }
                     Spacer()
                 }
             } else {
@@ -62,6 +66,20 @@ struct ChatView: View {
             }.padding(8)
         }
         .navigationTitle(feed.groupInformation?.groupName ?? feed.chatId ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            HStack {
+                if isLoading {
+                    ProgressView()
+                } else if feed.groupInformation != nil {
+                    NavigationLink(destination: GroupDetailsView(
+                        groupInfo: feed.groupInformation!,
+                        pushUser: pushUser)) {
+                            Image(systemName: "person.3.fill")
+                        }
+                }
+            }
+        }
         .onAppear(perform: {
             Task {
                 await _init()

@@ -15,6 +15,7 @@
 		0DAB45372C19F00B0049FF1F /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45342C19F00B0049FF1F /* Accounts.swift */; };
 		0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB45352C19F00B0049FF1F /* Signer.swift */; };
 		0DAB453B2C19F0D40049FF1F /* web3swift in Frameworks */ = {isa = PBXBuildFile; productRef = 0DAB453A2C19F0D40049FF1F /* web3swift */; };
+		0DE2E98E2C4A795C0054A634 /* GroupDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2E98D2C4A795C0054A634 /* GroupDetailsView.swift */; };
 		0DEC9E642C189426004B5304 /* Push_Swift_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */; };
 		0DEC9E662C189426004B5304 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC9E652C189426004B5304 /* ContentView.swift */; };
 		0DEC9E682C189428004B5304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DEC9E672C189428004B5304 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		0D6DDBEC2C3EE8A300A1E34B /* ChatTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTile.swift; sourceTree = "<group>"; };
 		0DAB45342C19F00B0049FF1F /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		0DAB45352C19F00B0049FF1F /* Signer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		0DE2E98D2C4A795C0054A634 /* GroupDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsView.swift; sourceTree = "<group>"; };
 		0DEC9E602C189426004B5304 /* Push Swift Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push Swift Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEC9E632C189426004B5304 /* Push_Swift_DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_Swift_DemoApp.swift; sourceTree = "<group>"; };
 		0DEC9E652C189426004B5304 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				0D6DDBE92C3EE0D400A1E34B /* DashBoard.swift */,
 				0D0900CA2C45547C003507FC /* CreateGroup.swift */,
 				0D0900CC2C457D61003507FC /* Toast.swift */,
+				0DE2E98D2C4A795C0054A634 /* GroupDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				0DAB45382C19F00B0049FF1F /* Signer.swift in Sources */,
 				0D0900CD2C457D61003507FC /* Toast.swift in Sources */,
 				0D6DDBED2C3EE8A300A1E34B /* ChatTile.swift in Sources */,
+				0DE2E98E2C4A795C0054A634 /* GroupDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,11 +338,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Push-Swift-Demo-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Push Swift Demo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,11 +368,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Push-Swift-Demo-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Push Swift Demo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
